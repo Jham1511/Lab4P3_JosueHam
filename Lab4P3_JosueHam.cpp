@@ -11,7 +11,7 @@ int Factorial(int numero) {
 	else {
 		return numero * (numero - 1);
 	}
-}
+}//Factorial para el ejercicio 1
 
 int num_repeticiones(char aux, string cad) {
 	int repeticiones = 0;
@@ -23,13 +23,13 @@ int num_repeticiones(char aux, string cad) {
 		}
 	}
 	return repeticiones;
-}
+}//Retorna las repeticiones de cada char
 
 double porcentaje(double longitud, double repeticiones) {
 	double x = 0;
 	x = repeticiones * 100 / longitud;
 	return x;
-}
+} //Hace el calculo de los porcentajes de adn
 int nucleotidos_Consecutivos(char letra, string cadena) {
 	int cont = 0;
 	for (char caracter : cadena)
@@ -44,7 +44,7 @@ int nucleotidos_Consecutivos(char letra, string cadena) {
 
 	}
 	return cont;
-}
+}//Para la secuencia
 
 int menu() {
 	cout << "\nMenu del Programa" << endl
@@ -91,8 +91,6 @@ int main()
 								 {
 									caracteres_repetidos.push_back(caracter);
 								 }
-								 
-								 
 							 }
 						 }
 						 for (int i = 0; i < caracteres_repetidos.size(); i++)
