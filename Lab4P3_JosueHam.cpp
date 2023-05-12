@@ -78,10 +78,21 @@ int main()
 							 int repes = num_repeticiones(caracter, cadena);
 							 if (repes > 1)
 							 {
-								 caracteres_repetidos.push_back(caracter);
-								 if ((find(caracteres_repetidos.begin(), caracteres_repetidos.end(), caracter)) != caracteres_repetidos.end()) {
-									 caracteres_repetidos.erase(caracteres_repetidos.end());
-								 } 
+								 bool bandera = false;
+								 for (int i = 0; i < caracteres_repetidos.size(); i++)
+								 {
+									 if (caracteres_repetidos[i] == caracter)
+									 {
+										 bandera = true;
+									 }
+
+								 }
+								 if (bandera == false)
+								 {
+									caracteres_repetidos.push_back(caracter);
+								 }
+								 
+								 
 							 }
 						 }
 						 for (int i = 0; i < caracteres_repetidos.size(); i++)
@@ -109,6 +120,7 @@ int main()
 			 cout << "Ingrese una cadena de ADN: ";
 			 string cadena_ADN;
 			 cin >> cadena_ADN;
+			 vector <char> nucleotidos_repetidos(cadena_ADN.length());
 			for  (char caracter : cadena_ADN)
 			 {
 				if ((int)caracter >= 65 && (int)caracter <= 90)
@@ -119,12 +131,9 @@ int main()
 						for (char letras : cadena_ADN)
 						{
 							int repes = num_repeticiones(letras, cadena_ADN);
-							int nucleotidos_actual = nucleotidos_Consecutivos(caracter, cadena_ADN);
 							cout << letras << ": " << repes << endl;
 							cout << letras << ": " << porcentaje(cadena_ADN.length(), repes) << " %" << endl;
-						}
-						
-						
+						}	
 					}
 				}
 				break;
