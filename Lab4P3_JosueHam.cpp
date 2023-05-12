@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 int Factorial(int numero) {
@@ -24,6 +25,27 @@ int num_repeticiones(char aux, string cad) {
 	return repeticiones;
 }
 
+double porcentaje(double longitud, double repeticiones) {
+	double x = 0;
+	x = repeticiones * 100 / longitud;
+	return x;
+}
+int nucleotidos_Consecutivos(char letra, string cadena) {
+	int cont = 0;
+	for (char caracter : cadena)
+	{
+		if (caracter != letra)
+		{
+			cont = 0;
+		}
+		else {
+			cont++;
+		}
+
+	}
+	return cont;
+}
+
 int menu() {
 	cout << "\nMenu del Programa" << endl
 		<< "1 -> Ejercicio 1 (Permutaciones con repeticion)" << endl
@@ -45,7 +67,7 @@ int main()
 			 cout << "Ingrese una cadena: ";
 			 string cadena = "";
 			 cin >> cadena;
-
+			 vector <char> caracteres_repetidos(cadena.length());
 			 for (char caracter : cadena)
 			 {
 				 if ((int)caracter >= 65 && (int)caracter <= 90)
@@ -56,11 +78,17 @@ int main()
 							 int repes = num_repeticiones(caracter, cadena);
 							 if (repes > 1)
 							 {
-									 cout << caracter << ": " << repes << " veces" << endl;
-									 acum += Factorial(repes);	
+								 caracteres_repetidos.push_back(caracter);
+								 if ((find(caracteres_repetidos.begin(), caracteres_repetidos.end(), caracter)) != caracteres_repetidos.end()) {
+									 caracteres_repetidos.erase(caracteres_repetidos.end());
+								 } 
 							 }
 						 }
-
+						 for (int i = 0; i < caracteres_repetidos.size(); i++)
+						 {
+							 cout << caracteres_repetidos[i] << ": " << num_repeticiones(caracteres_repetidos[i], cadena) << " veces" << endl;
+							 acum += Factorial(num_repeticiones(caracteres_repetidos[i], cadena));
+						 }
 						 int longitud = cadena.length();
 						 int factorial_longitud = Factorial(longitud);
 						 int permutaciones = factorial_longitud / acum;
@@ -88,6 +116,15 @@ int main()
 					if (caracter == 'A' || caracter == 'C' || caracter == 'G' || caracter == 'T')
 					{
 						cout << "Numero total de Nucleotidos: " << cadena_ADN.length() << endl;
+						for (char letras : cadena_ADN)
+						{
+							int repes = num_repeticiones(letras, cadena_ADN);
+							int nucleotidos_actual = nucleotidos_Consecutivos(caracter, cadena_ADN);
+							cout << letras << ": " << repes << endl;
+							cout << letras << ": " << porcentaje(cadena_ADN.length(), repes) << " %" << endl;
+						}
+						
+						
 					}
 				}
 				break;
