@@ -45,23 +45,53 @@ int main()
 			 cout << "Ingrese una cadena: ";
 			 string cadena = "";
 			 cin >> cadena;
-				 if ((cadena.length()) >= 6) {
-					 char auxiliar = 0;
-					 for (char caracter : cadena) {
-						 int repes = num_repeticiones(auxiliar, cadena);
-							 cout << caracter << ": " << repes << " veces" << endl;
+
+			 for (char caracter : cadena)
+			 {
+				 if ((int)caracter >= 65 && (int)caracter <= 90)
+				 {
+					 if ((cadena.length()) >= 6) {
+						 int acum = 0;
+						 for (char caracter : cadena) {
+							 int repes = num_repeticiones(caracter, cadena);
+							 if (repes > 1)
+							 {
+									 cout << caracter << ": " << repes << " veces" << endl;
+									 acum += Factorial(repes);	
+							 }
+						 }
+
+						 int longitud = cadena.length();
+						 int factorial_longitud = Factorial(longitud);
+						 int permutaciones = factorial_longitud / acum;
+						 cout << "Numero de permutaciones de la palabra " << cadena << ": " << permutaciones << endl;
 					 }
-					 int longitud = cadena.length();
-					 int permutaciones = Factorial(longitud);
-					 cout << "Numero de permutaciones de la palabra " << cadena << ": " << permutaciones << endl;
+					 else {
+						 cout << "La cadena ingresada no cumple con la longitud de 6 o mas";
+					 }
 				 }
 				 else {
-					 cout << "La cadena ingresada no cumple con la longitud de 6 o mas";
+					 cout << "La cadena solo puede ser mayuscula";
 				 }
+				 break;
+			 }
 		}
 			   break;
 		 case 2: {
-
+			 cout << "Ingrese una cadena de ADN: ";
+			 string cadena_ADN;
+			 cin >> cadena_ADN;
+			for  (char caracter : cadena_ADN)
+			 {
+				if ((int)caracter >= 65 && (int)caracter <= 90)
+				{
+					if (caracter == 'A' || caracter == 'C' || caracter == 'G' || caracter == 'T')
+					{
+						cout << "Numero total de Nucleotidos: " << cadena_ADN.length() << endl;
+					}
+				}
+				break;
+			 }
 		 }
 			   break;
 		 default: 
