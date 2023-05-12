@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 using namespace std;
 
 int Factorial(int numero) {
@@ -12,10 +12,22 @@ int Factorial(int numero) {
 	}
 }
 
+int num_repeticiones(char aux, string cad) {
+	int repeticiones = 0;
+	for (char caracter: cad)
+	{
+		if (caracter == aux)
+		{
+			repeticiones++;
+		}
+	}
+	return repeticiones;
+}
+
 int menu() {
 	cout << "\nMenu del Programa" << endl
-		<< "1 -> Ejercicio 1 ()" << endl
-		<< "2 -> Ejercicio 2 ()" << endl
+		<< "1 -> Ejercicio 1 (Permutaciones con repeticion)" << endl
+		<< "2 -> Ejercicio 2 (Analisis de ADN)" << endl
 		<< "3 -> Salir" << endl
 		<< "Ingrese la opcion que desea: " << endl;
 	int numero;
@@ -30,7 +42,22 @@ int main()
 		switch (respuesta)
 		{
 		 case 1: {
-
+			 cout << "Ingrese una cadena: ";
+			 string cadena = "";
+			 cin >> cadena;
+				 if ((cadena.length()) >= 6) {
+					 char auxiliar = 0;
+					 for (char caracter : cadena) {
+						 int repes = num_repeticiones(auxiliar, cadena);
+							 cout << caracter << ": " << repes << " veces" << endl;
+					 }
+					 int longitud = cadena.length();
+					 int permutaciones = Factorial(longitud);
+					 cout << "Numero de permutaciones de la palabra " << cadena << ": " << permutaciones << endl;
+				 }
+				 else {
+					 cout << "La cadena ingresada no cumple con la longitud de 6 o mas";
+				 }
 		}
 			   break;
 		 case 2: {
